@@ -12,7 +12,7 @@ def hello_world():
 
 @app.route('/about')
 def about():
-    return 'Welcome to the about page.'
+    return render_template('about.html', title='About Page')
 
 
 if __name__ == '__main__':
