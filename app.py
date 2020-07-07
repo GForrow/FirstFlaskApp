@@ -5,10 +5,18 @@ from os import environ
 
 app = Flask(__name__)
 
-
 app.config['SECRET KEY'] = environ.get('SECRET_KEY')
 app.config['SQLACLHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + environ.get('MYSQL_USER') + ':' + environ.get('dbPASS') + environ.get('MYSQL_HOST') + ':' + environ.get('MYSQL_PORT') + environ.get('dbNAME')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + \
+                                        environ.get('MYSQL_USER') + \
+                                        ':' + \
+                                        environ.get('MYSQL_PASS') + \
+                                        '@' + \
+                                        environ.get('MYSQL_HOST') + \
+                                        ':' + \
+                                        environ.get('MYSQL_PORT') + \
+                                        '/' + \
+                                        environ.get('MYSQL_dbNAME')
 db = SQLAlchemy(app)
 
 
@@ -54,7 +62,7 @@ def create():
 
 @app.route('/delete')
 def delete():
-    #db.drop_all()
+    # db.drop_all()
     db.session.query(Posts).delete()
     db.session.commit()
     return "It's all gone"
