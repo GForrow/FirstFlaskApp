@@ -45,13 +45,13 @@ class Posts(db.Model):
 @app.route('/')
 @app.route('/home')
 def home():
-    post_data = Posts.query.all()
-    return render_template('homepage.html', title='Homepage', posts=post_data)
+    return render_template('homepage.html', title='Homepage')
 
 
 @app.route('/about')
 def about():
-    return render_template('about.html', title='About Page')
+    post_data = Posts.query.all()
+    return render_template('about.html', title='About Page', posts=post_data)
 
 # GET - displays data
 # POST - which sends data from website to app

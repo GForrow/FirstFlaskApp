@@ -15,7 +15,9 @@
                         {% endfor %}
                     </div>
                 {% endif %}
+            </div>
             <br>
+            <div class="form-group">
                 {{ form.l_name.label }}
                 {{ form.l_name }}
 
@@ -26,7 +28,9 @@
                         {% endfor %}
                     </div>
                 {% endif %}
+            </div>
             <br>
+            <div class="form-group">
                 {{ form.title.label }}
                 {{ form.title }}
 
@@ -37,7 +41,9 @@
                         {% endfor %}
                     </div>
                 {% endif %}
+            </div>
             <br>
+            <div class="form-group">
                 {{ form.content.label }}
                 {{ form.content }}
 
@@ -50,19 +56,6 @@
                 {% endif %}
 
             </div>
-
-{#            <br>#}
-{#            {{ form.f_name.label }}#}
-{#            {{ form.f_name }}#}
-{#            <br>#}
-{#            {{ form.l_name.label }}#}
-{#            {{ form.l_name }}#}
-{#            <br>#}
-{#            {{ form.title.label }}#}
-{#            {{ form.title }}#}
-{#            <br>#}
-{#            {{ form.content.label }}#}
-{#            {{ form.content }}#}
             <br>
             {{ form.submit }}
 
