@@ -4,17 +4,65 @@
     <div class="form">
         <form method="post" action="">
             {{ form.hidden_tag() }}
-            {{ form.f_name.labal }}
-            {{ form.f_name }}
+            <div class="form-group">
+                {{ form.f_name.label }}
+                {{ form.f_name }}
+
+                {% if form.f_name.errors %}
+                    <div class="error">
+                        {% for error in form.f_name.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             <br>
-            {{ form.l_name.labal }}
-            {{ form.l_name }}
+                {{ form.l_name.label }}
+                {{ form.l_name }}
+
+                {% if form.l_name.errors %}
+                    <div class="error">
+                        {% for error in form.l_name.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             <br>
-            {{ form.title.labal }}
-            {{ form.title }}
+                {{ form.title.label }}
+                {{ form.title }}
+
+                {% if form.title.errors %}
+                    <div class="error">
+                        {% for error in form.title.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             <br>
-            {{ form.content.labal }}
-            {{ form.content }}
+                {{ form.content.label }}
+                {{ form.content }}
+
+                {% if form.content.errors %}
+                    <div class="error">
+                        {% for error in form.content.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+            </div>
+
+{#            <br>#}
+{#            {{ form.f_name.label }}#}
+{#            {{ form.f_name }}#}
+{#            <br>#}
+{#            {{ form.l_name.label }}#}
+{#            {{ form.l_name }}#}
+{#            <br>#}
+{#            {{ form.title.label }}#}
+{#            {{ form.title }}#}
+{#            <br>#}
+{#            {{ form.content.label }}#}
+{#            {{ form.content }}#}
             <br>
             {{ form.submit }}
 

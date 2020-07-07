@@ -1,11 +1,16 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask import render_template
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
+from forms import PostsForm
 
 app = Flask(__name__)
 
-app.config['SECRET KEY'] = environ.get('SECRET_KEY')
+# 'f09e631cbbef362ed90263d2ddf8811e'
+# app.config['SECRET KEY'] = environ.get('SECRET_KEY')
+#app.config['SECRET KEY'] = 'f09e631cbbef362ed90263d2ddf8811e'
+
+app.config['SECRET_KEY'] = 'ea1c41f19b792a6ca6a81516f977aa29'
 app.config['SQLACLHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + \
                                         environ.get('MYSQL_USER') + \
@@ -47,6 +52,29 @@ def home():
 @app.route('/about')
 def about():
     return render_template('about.html', title='About Page')
+
+# GET - displays data
+# POST - which sends data from website to app
+# DELETE - deletes some data
+# Insert - sends data, but more used for updating
+
+
+@app.route('/add', methods=['GET', 'POST'])
+def add():
+    form = PostsForm()
+    if form.validate_on_submit():
+        post_data = Posts(
+            f_name=form.f_name.data,
+            l_name=form.l_name.data,
+            title=form.title.data,
+            content=form.content.data
+        )
+        db.session.add(post_data)
+        db.session.commit()
+
+        return redirect(url_for('home'))
+    else:
+        return render_template('post.html', title='Add a post', form=form)
 
 
 @app.route('/create')
